@@ -116,11 +116,11 @@ Respond in JSON format:
         
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model="gemini-2.5-pro",
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     temperature=0.2,
-                    thinking_config=types.ThinkingConfig(thinking_budget=-1)
+                    thinking_config=types.ThinkingConfig(thinking_budget=6000)
                 )
             )
             return response.text.strip()
