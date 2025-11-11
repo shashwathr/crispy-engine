@@ -95,6 +95,7 @@ class AssertionEvaluator:
         prompt = f"""{context}
 
 You are performing a first-level technical review of an audit workpaper. Your task is to critically evaluate the workpaper for technical accuracy, logical consistency, and documentation quality, applying professional audit judgment.
+Be thorough and objective in your assessment. Be as clear and specific as possible in your findings and recommendations.
 
 Objectives:
 1. Mathematical Accuracy: Verify calculations and footings
@@ -116,11 +117,11 @@ Respond in JSON format:
         
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-pro",
+                model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     temperature=0.2,
-                    thinking_config=types.ThinkingConfig(thinking_budget=6000)
+                    thinking_config=types.ThinkingConfig(thinking_budget=-1)
                 )
             )
             return response.text.strip()
